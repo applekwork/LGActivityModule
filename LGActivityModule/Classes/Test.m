@@ -72,7 +72,7 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
 - (void)stopNetWorkStatus:(NSDictionary *)args callback:(YTWebViewBridgeCallback)callback {
     if (callback) {
         [self.reachabilityManager stopMonitoring];
-//        [self returnResult:0 callback:callback];
+        [self returnResult:0 callback:callback];
     }
 }
 #pragma mark - 开始监听加速度计状态
