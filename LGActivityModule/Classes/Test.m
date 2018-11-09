@@ -65,14 +65,14 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
         [self.reachabilityManager stopMonitoring];
         NSMutableDictionary *info = [NSMutableDictionary dictionaryWithCapacity:0];
         [info setValue:typeStr forKey:@"type"];
-        [self returnResult:0 dic:info callback:callback];
+//        [self returnResult:0 dic:info callback:callback];
     }
 }
 #pragma mark - 关闭监听网络
 - (void)stopNetWorkStatus:(NSDictionary *)args callback:(LGWebViewBridgeCallback)callback {
     if (callback) {
         [self.reachabilityManager stopMonitoring];
-        [self returnResult:0 callback:callback];
+//        [self returnResult:0 callback:callback];
     }
 }
 #pragma mark - 开始监听加速度计状态
@@ -95,7 +95,7 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
                     [info setValue:@(acceleration.x) forKey:@"x"];
                     [info setValue:@(acceleration.y) forKey:@"y"];
                     [info setValue:@(acceleration.z) forKey:@"z"];
-                    [self returnResult:0 dic:info callback:callback];
+//                    [self returnResult:0 dic:info callback:callback];
                 });
             }
         }];
@@ -106,7 +106,7 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
     if (callback) {
         if ([self.motionManager isAccelerometerActive]) {
             [self.motionManager stopAccelerometerUpdates];
-            [self returnResult:0 callback:callback];
+//            [self returnResult:0 callback:callback];
         }
     }
 }
@@ -117,9 +117,9 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
         if (pasterStr && pasterStr.length > 0) {
             UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
             pasteboard.string = pasterStr;
-            [self returnResult:0 callback:callback];
+//            [self returnResult:0 callback:callback];
         } else {
-            [self returnResult:1 callback:callback];
+//            [self returnResult:1 callback:callback];
         }
     }
 }
@@ -131,9 +131,9 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
         if (pasterStr && pasterStr.length > 0) {
             NSMutableDictionary *info = [NSMutableDictionary dictionaryWithCapacity:0];
             [info setValue:pasterStr forKey:@"content"];
-            [self returnResult:0 dic:info callback:callback];
+//            [self returnResult:0 dic:info callback:callback];
         } else {
-            [self returnResult:1 callback:callback];
+//            [self returnResult:1 callback:callback];
         }
     }
 }
