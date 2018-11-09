@@ -7,7 +7,9 @@
 //
 
 #import "LGOperationalActivityManager.h"
-
+#import "LGOperationalActivityOpt.h"
+#import "LGOperationalActivityView.h"
+#import "LGDetailViewController.h"
 @interface LGOperationalActivityManager()
 @property (nonatomic, copy)   NSString          *url;
 @property (nonatomic, strong) NSDictionary      *param;
