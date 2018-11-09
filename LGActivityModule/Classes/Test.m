@@ -65,7 +65,7 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
         [self.reachabilityManager stopMonitoring];
         NSMutableDictionary *info = [NSMutableDictionary dictionaryWithCapacity:0];
         [info setValue:typeStr forKey:@"type"];
-//        [self returnResult:0 dic:info callback:callback];
+        [self returnResult:0 dic:info callback:callback];
     }
 }
 #pragma mark - 关闭监听网络
