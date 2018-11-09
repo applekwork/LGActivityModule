@@ -55,6 +55,7 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
     } else {
         statusStr = @"无网络";
     }
+    return statusStr;
 }
 #pragma mark - 获取网络状态
 - (void)getNetWorkType:(NSDictionary *)args callback:(LGWebViewBridgeCallback)callback {
