@@ -137,6 +137,34 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
         }
     }
 }
+- (void)returnResult:(NSInteger)code callback:(YTWebViewBridgeCallback)callback {
+    [self returnResult:code value:nil callback:callback];
+}
+
+- (void)returnResult:(NSInteger)code data:(NSString *)data callback:(YTWebViewBridgeCallback)callback {
+    [self returnResult:code value:data callback:callback];
+}
+
+- (void)returnResult:(NSInteger)code dic:(NSDictionary *)dic callback:(YTWebViewBridgeCallback)callback {
+    [self returnResult:code value:dic callback:callback];
+}
+
+- (void)returnResult:(NSInteger)code array:(NSArray *)array callback:(YTWebViewBridgeCallback)callback {
+    [self returnResult:code value:array callback:callback];
+}
+
+- (void)returnResult:(NSInteger)code value:(id)value callback:(YTWebViewBridgeCallback)callback {
+    if (callback) {
+        if (!value) {
+            value = @{};
+        }
+        NSMutableDictionary *param = [NSMutableDictionary dictionaryWithCapacity:0];
+        [param setObject:[NSNumber numberWithInteger:code] ?: @(1) forKey:@"code"];
+        [param setObject:value forKey:@"data"];
+        NSString *json = [param JSONLocalString];
+        callback(json, code);
+    }
+}
 - (AFNetworkReachabilityManager *)reachabilityManager {
     if (!_reachabilityManager) {
         _reachabilityManager = [AFNetworkReachabilityManager managerForDomain:@"www.baidu.com"];
