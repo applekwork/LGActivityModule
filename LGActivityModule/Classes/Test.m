@@ -10,6 +10,7 @@
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <CoreMotion/CoreMotion.h>
+#import <UIKit/UIKit.h>
 typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
 @interface Test ()
 @property(nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
@@ -160,8 +161,8 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
         NSMutableDictionary *param = [NSMutableDictionary dictionaryWithCapacity:0];
         [param setObject:[NSNumber numberWithInteger:code] ?: @(1) forKey:@"code"];
         [param setObject:value forKey:@"data"];
-        NSString *json = [param JSONLocalString];
-        callback(json, code);
+//        NSString *json = [param JSONLocalString];
+        callback(nil, code);
     }
 }
 
