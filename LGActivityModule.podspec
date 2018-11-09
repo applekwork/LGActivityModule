@@ -21,6 +21,7 @@ Pod::Spec.new do |s|
 
   s.public_header_files = 'LGActivityModule/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
+   s.framework = 'CoreTelephony','CoreMotion'
    s.dependency 'AFNetworking', '= 3.2.1'
    s.dependency 'MJExtension', '= 3.0.15.1'
    s.dependency 'SDWebImage', '=4.2.2'
