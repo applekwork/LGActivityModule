@@ -69,14 +69,14 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
     }
 }
 #pragma mark - 关闭监听网络
-- (void)stopNetWorkStatus:(NSDictionary *)args callback:(YTWebViewBridgeCallback)callback {
+- (void)stopNetWorkStatus:(NSDictionary *)args callback:(LGWebViewBridgeCallback)callback {
     if (callback) {
         [self.reachabilityManager stopMonitoring];
         [self returnResult:0 callback:callback];
     }
 }
 #pragma mark - 开始监听加速度计状态
-- (void)startAccelerometer:(NSDictionary *)args callback:(YTWebViewBridgeCallback)callback {
+- (void)startAccelerometer:(NSDictionary *)args callback:(LGWebViewBridgeCallback)callback {
     if (callback) {
         if (![self.motionManager isAccelerometerAvailable]) {
             //加速计不可用
@@ -102,7 +102,7 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
     }
 }
 #pragma mark - 停止监听加速度计状态
-- (void)stopAccelerometer:(NSDictionary *)args callback:(YTWebViewBridgeCallback)callback {
+- (void)stopAccelerometer:(NSDictionary *)args callback:(LGWebViewBridgeCallback)callback {
     if (callback) {
         if ([self.motionManager isAccelerometerActive]) {
             [self.motionManager stopAccelerometerUpdates];
@@ -111,7 +111,7 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
     }
 }
 #pragma mark - 设置系统剪切板内容
-- (void)setClipboardData:(NSDictionary *)args callback:(YTWebViewBridgeCallback)callback {
+- (void)setClipboardData:(NSDictionary *)args callback:(LGWebViewBridgeCallback)callback {
     if (callback) {
         NSString *pasterStr = [args valueForKey:@"data"];
         if (pasterStr && pasterStr.length > 0) {
@@ -124,7 +124,7 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
     }
 }
 #pragma mark - 获取系统剪切板内容
-- (void)getClipboardData:(NSDictionary *)args callback:(YTWebViewBridgeCallback)callback {
+- (void)getClipboardData:(NSDictionary *)args callback:(LGWebViewBridgeCallback)callback {
     if (callback) {
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         NSString *pasterStr = pasteboard.string;
@@ -137,23 +137,23 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
         }
     }
 }
-- (void)returnResult:(NSInteger)code callback:(YTWebViewBridgeCallback)callback {
+- (void)returnResult:(NSInteger)code callback:(LGWebViewBridgeCallback)callback {
     [self returnResult:code value:nil callback:callback];
 }
 
-- (void)returnResult:(NSInteger)code data:(NSString *)data callback:(YTWebViewBridgeCallback)callback {
+- (void)returnResult:(NSInteger)code data:(NSString *)data callback:(LGWebViewBridgeCallback)callback {
     [self returnResult:code value:data callback:callback];
 }
 
-- (void)returnResult:(NSInteger)code dic:(NSDictionary *)dic callback:(YTWebViewBridgeCallback)callback {
+- (void)returnResult:(NSInteger)code dic:(NSDictionary *)dic callback:(LGWebViewBridgeCallback)callback {
     [self returnResult:code value:dic callback:callback];
 }
 
-- (void)returnResult:(NSInteger)code array:(NSArray *)array callback:(YTWebViewBridgeCallback)callback {
+- (void)returnResult:(NSInteger)code array:(NSArray *)array callback:(LGWebViewBridgeCallback)callback {
     [self returnResult:code value:array callback:callback];
 }
 
-- (void)returnResult:(NSInteger)code value:(id)value callback:(YTWebViewBridgeCallback)callback {
+- (void)returnResult:(NSInteger)code value:(id)value callback:(LGWebViewBridgeCallback)callback {
     if (callback) {
         if (!value) {
             value = @{};
@@ -161,8 +161,8 @@ typedef void(^LGWebViewBridgeCallback)(NSString *result, BOOL completed);
         NSMutableDictionary *param = [NSMutableDictionary dictionaryWithCapacity:0];
         [param setObject:[NSNumber numberWithInteger:code] ?: @(1) forKey:@"code"];
         [param setObject:value forKey:@"data"];
-        NSString *json = [param JSONLocalString];
-        callback(json, code);
+//        NSString *json = [param JSONLocalString];
+        callback(nil, code);
     }
 }
 - (AFNetworkReachabilityManager *)reachabilityManager {
