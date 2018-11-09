@@ -10,6 +10,7 @@
 #import <CoreTelephony/CTTelephonyNetworkInfo.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 #import <CoreMotion/CoreMotion.h>
+typedef void(^YTWebViewBridgeCallback)(NSString *result, BOOL completed);
 @interface Test ()
 @property(nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager;
 @property (nonatomic, strong) CMMotionManager *motionManager;
